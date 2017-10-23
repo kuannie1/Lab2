@@ -1,0 +1,29 @@
+Input Conditioning (Mon Oct. 23): 1.0 hours
+    - Complete the inputconditioner module: 1.0
+        - Input Synchronization: 0.25
+        - Input Debouncer: 0.25
+        - Edge Detection: 0.25
+- Testbench: 0.25
+
+Shift Register (Wed Oct. 25): 1.5 hours
+    - Complete shiftregister module: 1.0
+    - Write testbench: 0.5
+
+Debugging: 2.0 hours
+
+Midpoint Check-in (Wed Oct 25): 2.35 hours
+    - top-level module: 1.0
+    - load module into FPGA: 0.1
+- debugging: 0.5
+    - written description of our testing: 0.5
+    - video of working thing: 0.25
+
+Report (Mon Oct. 30): 2.0 hours
+    - Input Conditioner: 1.25
+        - Generate waveforms: 0.25
+        - Draw circuit diagram: 0.5
+        - Analysis for maximum length input glitch: 0.5
+    - Shift Register: 0.25
+        - Test bench strategy: 0.25
+    - Test Strategy for SPI: 0.25
+    - Analysis of work plan compared to reality: 0.25
