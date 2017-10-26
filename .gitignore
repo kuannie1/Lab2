@@ -1,2 +1,5 @@
 *.o
+*.vvp
 *.vcd
+lab2/
+vivado*
