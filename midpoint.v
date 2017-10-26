@@ -1,25 +1,10 @@
 //--------------------------------------------------------------------------------
-//  Wrapper for Lab 0: Full Adder using additional Pmod I/Os
-// 
-//  Rationale: 
-//     The ZYBO board has 4 buttons, 4 switches, and 4 LEDs. But if we want to
-//     show the results of a 4-bit add operation, we will need at least 6 LEDs!
+//  FPGA with Pmod: Programming a shift register
 //
-//     This wrapper module assumes the use of the Pmod 8LD LED module and the
-//     Pmod SWT switch module. In the following code the 8LD is plugged into JE
-//     (bottom left) and the SWT is plugged into the top half of JA (right side),
-//     but you can change that in code.
-//
-//  Your job:
-//     Write FullAdder4bit with the proper port signature. It will be instantiated
-//     by the lab0_wrapper_pmod module in this file, which interfaces with the
-//     switches and LEDs for you.
-//
-//     Note: Be sure to un-comment the appropriate ports in your project XDC
-//     constraint file: sw, ja_p, led, je
-//
-//     Note: Buttons, switches, and LEDs have the least-significant (0) position
-//     labeled (usually on the right, except the SWT Pmod).      
+//  Using the FPGA, you can either parrallel load a constant (b10100101)
+//  or program using manual serial input. Serial input can be programmed by
+//  setting the curent bit with switch 1, and indicating a write to the register
+//  with switch 2.
 //--------------------------------------------------------------------------------
 
 `timescale 1ns / 1ps
