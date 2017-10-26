@@ -1,5 +1,7 @@
 # CompArch Lab 2: SPI Memory
 
+### Anne Ku, Kaitlyn Keil, Serena Chen
+
 **Work Plan due:** Monday, October 23
 
 **Midpoint Check In due:** Wednesday, October 25
