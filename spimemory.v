@@ -5,7 +5,7 @@
 `include "shiftregister.v"
 `include "inputconditioner.v"
 `include "datamemory.v"
-`include "spifm.v"
+`include "spifsm.v"
 `include "dff.v"
 `include "tristate.v"
 
@@ -74,7 +74,8 @@ spifsm fsm(.cs(cs_conditioned),
 		.addr_we(addr_we),
 		.sr_we(sr_we));
 
-tristate miso_buffer(.q(dff_out),
+tristate miso_buffer(.clk(clk),
+					.q(dff_out),
 					.bufe(miso_bufe),
 					.out(miso_pin));
 

@@ -1,15 +1,16 @@
 module tristate
 
 (
+input				clk,
 input               q,           
 input               bufe,
-output				out
+output reg			out
 );
-    always @() begin
+    always @(posedge clk) begin
         if (bufe == 1)
-            assign out = q;
+            out <= q;
         else
-        assign out = X;
+        out <= 0'bX;
     end
 
 endmodule

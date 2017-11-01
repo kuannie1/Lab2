@@ -12,7 +12,7 @@ module dff
 input               clk,                // FPGA Clock
 input               ce,
 input  [width-1:0]  dataIn,     // Load shift reg in parallel
-output [width-1:0]  dataOut,    // Shift reg data contents
+output [width-1:0]  dataOut     // Shift reg data contents
 );
 
     reg [width-1:0]      mem;
