@@ -3,7 +3,6 @@
 //------------------------------------------------------------------------
 `include "shiftregister.v"
 
-
 module testshiftregister();
 
     reg             clk;
