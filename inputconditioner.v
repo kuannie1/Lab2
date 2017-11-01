@@ -7,8 +7,8 @@
 
 module inputconditioner
 (
-input 	    clk,            // Clock domain to synchronize input to
-input	    noisysignal,    // (Potentially) noisy input signal
+input       clk,            // Clock domain to synchronize input to
+input       noisysignal,    // (Potentially) noisy input signal
 output reg  conditioned,    // Conditioned output signal
 output reg  positiveedge,   // 1 clk pulse at rising edge of conditioned
 output reg  negativeedge    // 1 clk pulse at falling edge of conditioned

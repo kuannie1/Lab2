@@ -16,12 +16,12 @@ module testshiftregister();
     
     // Instantiate with parameter width = 8
     shiftregister #(8) dut(.clk(clk), 
-    		           .peripheralClkEdge(peripheralClkEdge),
-    		           .parallelLoad(parallelLoad), 
-    		           .parallelDataIn(parallelDataIn), 
-    		           .serialDataIn(serialDataIn), 
-    		           .parallelDataOut(parallelDataOut), 
-    		           .serialDataOut(serialDataOut));
+                       .peripheralClkEdge(peripheralClkEdge),
+                       .parallelLoad(parallelLoad), 
+                       .parallelDataIn(parallelDataIn), 
+                       .serialDataIn(serialDataIn), 
+                       .parallelDataOut(parallelDataOut), 
+                       .serialDataOut(serialDataOut));
     
 
     // Generate clock (50MHz)
@@ -32,7 +32,6 @@ module testshiftregister();
 
 
     initial begin
-    	// Your Test Code
         $dumpfile("shiftregister.vcd");
         $dumpvars();
 

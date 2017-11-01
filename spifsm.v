@@ -33,7 +33,7 @@ always @(posedge clkpos ) begin
 
 			else begin // writing is selected
 				miso <= 0;
-				dm_we <= 0;
+				dm_we <= 1;
 				sr_we <= 0;
 			end 
 
@@ -41,7 +41,7 @@ always @(posedge clkpos ) begin
 	end
 
 	else begin
-		counter <= 1'b0;
+		counter <= 4'b0;
 		miso <= 1'b0;
 		dm_we <= 1'b0;
 		sr_we <= 1'b0;

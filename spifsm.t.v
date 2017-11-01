@@ -15,10 +15,10 @@ module testFsm();
     wire sr_we;
     
     spifsm dut(.cs(cs),
-    			 .clkpos(clkpos),
-			 .ReadWrite(ReadWrite),
-			 .miso(miso),
-			 .dm_we(dm_we),
+                 .clkpos(clkpos),
+             .ReadWrite(ReadWrite),
+             .miso(miso),
+             .dm_we(dm_we),
              .addr_we(addr_we),
              .sr_we(sr_we));
 
@@ -35,30 +35,51 @@ module testFsm();
     initial begin
     $dumpfile("spifsm.vcd");
     $dumpvars();
-    ReadWrite = 1; #40
 
-    cs=0; #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 1 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    //cs select high
+    ReadWrite = 1;
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 2 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+        if (!((miso == 0) && (dm_we == 0) && (addr_we == 0) && (sr_we == 0))) 
+            $display("State 1 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
+
+    //cs select low, readwrite = 1
+    cs=0; 
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 3 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+        if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
+            $display("State 2 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
+
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 4 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+        if (!((miso == 1) && (dm_we == 0) && (addr_we == 0) && (sr_we == 1))) 
+            $display("State 3 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
+
+    //cs select high
+    ReadWrite = 0;
+    cs=1;
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 5 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+        if (!((miso == 0) && (dm_we == 0) && (addr_we == 0) && (sr_we == 0))) 
+            $display("State 4 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
+
+    //cs select low, readwrite = 0
+    cs=0; 
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 6 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+        if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
+            $display("State 5 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
+
+    repeat(7) begin
     #20
-    if (!((miso == 0) && (dm_we == 0) && (addr_we == 1) && (sr_we == 0))) 
-        $display("State 7 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
-    #20
+        if (!((miso == 0) && (dm_we == 1) && (addr_we == 0) && (sr_we == 0))) 
+            $display("State 6 failed. miso: %b dm_we: %b addr_we: %b sr_we: %b", miso, dm_we, addr_we, sr_we); 
+    end
 
     #100 $finish;
     end

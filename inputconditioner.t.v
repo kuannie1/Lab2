@@ -29,10 +29,10 @@ module testConditioner();
     wire falling;
     
     inputconditioner dut(.clk(clk),
-    			 .noisysignal(pin),
-			 .conditioned(conditioned),
-			 .positiveedge(rising),
-			 .negativeedge(falling));
+                 .noisysignal(pin),
+             .conditioned(conditioned),
+             .positiveedge(rising),
+             .negativeedge(falling));
 
     // testing unit
     reg expectedCond, expectedRise, expectedFall;
