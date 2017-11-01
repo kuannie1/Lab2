@@ -34,6 +34,7 @@ module testConditioner();
 			 .positiveedge(rising),
 			 .negativeedge(falling));
 
+    // testing unit
     reg expectedCond, expectedRise, expectedFall;
     wire isEquivalent;
     outputTester tester(.conditioned(conditioned),
@@ -55,6 +56,7 @@ module testConditioner();
     $dumpfile("iconditioner.vcd");
     $dumpvars();
 
+    //change pin to 1
     pin=1;
 
     expectedCond = 0;
@@ -85,6 +87,7 @@ module testConditioner();
 
     #40
 
+    // change pin to 0
     pin=0;
 
     repeat (5) begin
@@ -118,6 +121,7 @@ module testConditioner();
             expectedCond, expectedRise, expectedFall, conditioned, rising, falling);
     end
 
+    // bouncing
     pin=0;
 
     #20
