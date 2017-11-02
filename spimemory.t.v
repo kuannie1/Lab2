@@ -79,7 +79,7 @@ module testspimemory();
         mosi_pin = info_pin[9]; # 100
 
         // choose read or write
-        mosi_pin = 1; # 200 // next read from the thing
+        mosi_pin = 1; # 100 // next read from the thing
 
         if ((miso_pin != info_pin[7])) $display("Test 1 failed at read element 1"); #100
         if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 2"); #100
@@ -130,7 +130,7 @@ module testspimemory();
         mosi_pin = info_pin[9]; # 100
 
         // choose read or write
-        mosi_pin = 1; # 200 // next read from the thing
+        mosi_pin = 1; # 100 // next read from the thing
 
         if ((miso_pin != info_pin[7])) $display("Test 2 failed at read element 1: %b", miso_pin); #100
         if ((miso_pin != info_pin[6])) $display("Test 2 failed at read element 2: %b", miso_pin); #100
@@ -181,7 +181,7 @@ module testspimemory();
         mosi_pin = info_pin[9]; # 100
 
         // choose read or write
-        mosi_pin = 1; # 200 // next read from the thing
+        mosi_pin = 1; # 100 // next read from the thing
 
         if ((miso_pin != info_pin[7])) $display("Test 3 failed at read element 1: %b", miso_pin); #100
         if ((miso_pin != info_pin[6])) $display("Test 3 failed at read element 2: %b", miso_pin); #100

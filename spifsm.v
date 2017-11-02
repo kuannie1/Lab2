@@ -39,7 +39,9 @@ always @(posedge clkpos ) begin
 				dm_we <= 1;
 				sr_we <= 0;
 			end 
-
+		end
+		else if (counter == 5'd9) begin
+			sr_we <= 0;
 		end
 	end
 
