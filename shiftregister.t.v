@@ -47,7 +47,40 @@ module testshiftregister();
         parallelLoad = 0; peripheralClkEdge = 1; serialDataIn = 1'b1; #20
         if ((parallelDataOut != 8'b00000001) && (serialDataOut != 0)) $display("Test 4 Failed");
 
-        #100 $finish;
+        peripheralClkEdge = 0; serialDataIn = 1'b1; #20
+        if ((parallelDataOut != 8'b00000001) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b00000011) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b0; #20
+        if ((parallelDataOut != 8'b00000011) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b00000110) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b1; #20
+        if ((parallelDataOut != 8'b00000110) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b00001101) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b0; #20
+        if ((parallelDataOut != 8'b00001101) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b00011010) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b1; #20
+        if ((parallelDataOut != 8'b00011010) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b00110101) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b0; #20
+        if ((parallelDataOut != 8'b00110101) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b01101010) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b1; #20
+        if ((parallelDataOut != 8'b01101010) && (serialDataOut != 0)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b11010101) && (serialDataOut != 1)) $display("Test 5 Failed");
+        peripheralClkEdge = 0; serialDataIn = 1'b0; #20
+        if ((parallelDataOut != 8'b11010101) && (serialDataOut != 1)) $display("Test 5 Failed");
+        peripheralClkEdge = 1; #20
+        if ((parallelDataOut != 8'b10101010) && (serialDataOut != 1)) $display("Test 5 Failed");
+
+        $finish;
 
     end
 
