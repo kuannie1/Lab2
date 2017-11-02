@@ -13,8 +13,7 @@ reg[3:0] counter = 4'd0;
 
 
 always @(posedge clkpos ) begin
-
-$display("%b", cs);
+	
 	if (cs == 1'b0) begin 
 
 		if (counter < 4'd7) begin

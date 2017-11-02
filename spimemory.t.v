@@ -10,7 +10,8 @@ module testspimemory();
     reg           cs_pin;     // SPI chip select
     wire          miso_pin;   // SPI master in slave out, has memory address
     reg           mosi_pin;   // SPI master out slave in, for reading
-    wire [3:0]    leds;       // LEDs for debugging
+    wire [3:0]    leds;       // LEDs for debugging: 3 = miso_bufe, 2 = dm_we, 1 = addr_we, 0 = sr_we
+    reg [15:0]   info_pin;
 
     spiMemory dut(.clk(clk),
     				.sclk_pin(sclk_pin),
@@ -25,21 +26,76 @@ module testspimemory();
     	sclk_pin = 0;
 		clk=0;
 	end
-	always #10 clk=!clk;    // 50MHz Clock
-	always #100 sclk_pin=!sclk_pin;
+	always #5 clk=!clk;    // 50MHz Clock
+	always #50 sclk_pin=!sclk_pin;
 
 	initial begin
 		$dumpfile("spimemorytest.vcd");
 	    $dumpvars();
-	    
-	    cs_pin = 1; mosi_pin = 1; #500 
 
-	    cs_pin = 0; mosi_pin = 0; #3000
+        // Establish timing	    
+	    cs_pin = 1; mosi_pin = 1; #250 
 
-	    cs_pin = 1; mosi_pin = 1; #200
+        // One cyle is 1600 time units
+	    cs_pin = 0; mosi_pin = 0; #1600
 
+        // Reset pin
+	    cs_pin = 1; mosi_pin = 1; #250
 
+        // Start the process!
+        info_pin = 16'b1111110011111111;
+        cs_pin = 0; mosi_pin = info_pin[15]; # 150 // wait until cs goes low, then another 100 time steps
 
+        if ((leds[1] != 1'b1) || (leds[3:2] != 2'b0) || (leds[0] != 1'b0)) $display("Test 1 Write failed: 0010 != %b",leds);
+        
+        mosi_pin = info_pin[14]; # 100
+        mosi_pin = info_pin[13]; # 100
+        mosi_pin = info_pin[12]; # 100
+        mosi_pin = info_pin[11]; # 100
+        mosi_pin = info_pin[10]; # 100
+        mosi_pin = info_pin[9]; # 100
+
+        // choose read or write
+        mosi_pin = 0; # 100 // first write to the thing
+        if ((leds[2] != 1'b1) || (leds[3] != 1'b0) || (leds[1:0] != 2'b0)) $display("Test 1 Write failed: 0100 != %b",leds);
+
+        mosi_pin = info_pin[8]; # 100
+        mosi_pin = info_pin[7]; # 100
+        mosi_pin = info_pin[6]; # 100
+        mosi_pin = info_pin[5]; # 100
+        mosi_pin = info_pin[4]; # 100
+        mosi_pin = info_pin[3]; # 100
+        mosi_pin = info_pin[2]; # 100
+        mosi_pin = info_pin[1]; # 100
+        mosi_pin = info_pin[0]; # 100
+
+        cs_pin = 1; # 500 // stop writing the thing
+
+        cs_pin = 0; mosi_pin = info_pin[15]; # 150 // wait until cs goes low, then another 100 time steps
+
+        if ((leds[1] != 1'b1) || (leds[3:2] != 2'b0) || (leds[0] != 1'b0)) $display("Test 1 Read failed: 0010 != %b",leds);
+        
+        mosi_pin = info_pin[14]; # 100
+        mosi_pin = info_pin[13]; # 100
+        mosi_pin = info_pin[12]; # 100
+        mosi_pin = info_pin[11]; # 100
+        mosi_pin = info_pin[10]; # 100
+        mosi_pin = info_pin[9]; # 100
+
+        // choose read or write
+        mosi_pin = 1; # 200 // next read from the thing
+
+        if ((leds[3] != 1'b1) || (leds[2:1] != 2'b0) || (leds[0] != 1'b1)) $display("Test 1 Read failed: 1001 != %b",leds);
+        if ((miso_pin != info_pin[7])) $display("Test 1 failed at read element 1"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 2"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 3"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 4"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 5"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 6"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 7"); #100
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 8"); #100
+
+        cs_pin = 1;
 	    #100 $finish;
 	end
 
