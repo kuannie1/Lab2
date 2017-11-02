@@ -52,7 +52,7 @@ shiftregister sr(.clk(clk),
 
 datamemory 		dm(.clk(clk),
     			.dataOut(dm_data_out),
-    			.address(address[6:0]),
+    			.address(address[7:1]),
     			.writeEnable(dm_we),
     			.dataIn(sr_parallel_out));
 
