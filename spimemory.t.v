@@ -81,9 +81,10 @@ module testspimemory();
         // choose read or write
         mosi_pin = 1; # 100 // next read from the thing
 
-        if ((miso_pin != info_pin[7])) $display("Test 1 failed at read element 1"); #100
-        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 2"); #100
+        if ((miso_pin != info_pin[7])) $display("Test 1 failed at read element 1: %b", miso_pin); #100
         if ((leds[3] != 1'b1) || (leds[2:1] != 2'b0) || (leds[0] != 1'b1)) $display("Test 1 Read failed: 1001 != %b",leds);
+        if ((miso_pin != info_pin[6])) $display("Test 1 failed at read element 2"); #100
+        if ((leds[3] != 1'b1) || (leds[2:0] != 3'b0)) $display("Test 1 Read failed: 1000 != %b",leds);
         if ((miso_pin != info_pin[5])) $display("Test 1 failed at read element 3"); #100
         if ((miso_pin != info_pin[4])) $display("Test 1 failed at read element 4"); #100
         if ((miso_pin != info_pin[3])) $display("Test 1 failed at read element 5"); #100
@@ -119,7 +120,8 @@ module testspimemory();
 
         cs_pin = 1; # 500 // stop writing the thing
 
-        cs_pin = 0; mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
+        cs_pin = 0;
+        mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
 
         mosi_pin = info_pin[14]; # 100
         if ((leds[1] != 1'b1) || (leds[3:2] != 2'b0) || (leds[0] != 1'b0)) $display("Test 2 Read failed: 0010 != %b",leds);
@@ -133,8 +135,9 @@ module testspimemory();
         mosi_pin = 1; # 100 // next read from the thing
 
         if ((miso_pin != info_pin[7])) $display("Test 2 failed at read element 1: %b", miso_pin); #100
-        if ((miso_pin != info_pin[6])) $display("Test 2 failed at read element 2: %b", miso_pin); #100
         if ((leds[3] != 1'b1) || (leds[2:1] != 2'b0) || (leds[0] != 1'b1)) $display("Test 2 Read failed: 1001 != %b",leds);
+        if ((miso_pin != info_pin[6])) $display("Test 2 failed at read element 2: %b", miso_pin); #100
+        if ((leds[3] != 1'b1) || (leds[2:1] != 2'b0) || (leds[0] != 1'b0)) $display("Test 2 Read failed: 1000 != %b",leds);
         if ((miso_pin != info_pin[5])) $display("Test 2 failed at read element 3: %b", miso_pin); #100
         if ((miso_pin != info_pin[4])) $display("Test 2 failed at read element 4: %b", miso_pin); #100
         if ((miso_pin != info_pin[3])) $display("Test 2 failed at read element 5: %b", miso_pin); #100
@@ -146,7 +149,8 @@ module testspimemory();
 
         // Start the process!
         info_pin = 16'b0101010010101010;
-        cs_pin = 0; mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
+        cs_pin = 0;
+        mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
 
         mosi_pin = info_pin[14]; # 100
         if ((leds[1] != 1'b1) || (leds[3:2] != 2'b0) || (leds[0] != 1'b0)) $display("Test 3 Write failed: 0010 != %b",leds);
@@ -170,7 +174,8 @@ module testspimemory();
 
         cs_pin = 1; # 500 // stop writing the thing
 
-        cs_pin = 0; mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
+        cs_pin = 0;
+        mosi_pin = info_pin[15]; # 100 // wait until cs goes low, then another 100 time steps
 
         mosi_pin = info_pin[14]; # 100
         if ((leds[1] != 1'b1) || (leds[3:2] != 2'b0) || (leds[0] != 1'b0)) $display("Test 3 Read failed: 0010 != %b",leds);
@@ -184,8 +189,9 @@ module testspimemory();
         mosi_pin = 1; # 100 // next read from the thing
 
         if ((miso_pin != info_pin[7])) $display("Test 3 failed at read element 1: %b", miso_pin); #100
-        if ((miso_pin != info_pin[6])) $display("Test 3 failed at read element 2: %b", miso_pin); #100
         if ((leds[3] != 1'b1) || (leds[2:1] != 2'b0) || (leds[0] != 1'b1)) $display("Test 3 Read failed: 1001 != %b",leds);
+        if ((miso_pin != info_pin[6])) $display("Test 3 failed at read element 2: %b", miso_pin); #100
+        if ((leds[3] != 1'b1) || (leds[2:0] != 3'b0)) $display("Test 3 Read failed: 1000 != %b",leds);
         if ((miso_pin != info_pin[5])) $display("Test 3 failed at read element 3: %b", miso_pin); #100
         if ((miso_pin != info_pin[4])) $display("Test 3 failed at read element 4: %b", miso_pin); #100
         if ((miso_pin != info_pin[3])) $display("Test 3 failed at read element 5: %b", miso_pin); #100
