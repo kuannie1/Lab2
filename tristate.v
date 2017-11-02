@@ -10,7 +10,7 @@ output reg			out
         if (bufe == 1)
             out <= q;
         else
-        out <= 0'bX;
+        out <= 0'bZ;
     end
 
 endmodule
